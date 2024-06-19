@@ -2,6 +2,13 @@ const { User } = require('../models');
 
 const signUp = async (req, res) => {
   try {
+    const existingUser = await User.findOne({ where: { username: req.body.username } });
+
+    if (existingUser) {
+      res.status(400).json({ message: 'Username already taken' });
+      return;
+    }
+
     const userData = await User.create(req.body);
     req.session.save(() => {
       req.session.user_id = userData.id;

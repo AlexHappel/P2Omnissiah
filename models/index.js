@@ -2,7 +2,6 @@ const User = require('./User');
 const BlogPost = require('./BlogPost');
 const Comment = require('./Comment');
 
-// Define associations
 User.hasMany(BlogPost, {
   foreignKey: 'user_id',
   onDelete: 'CASCADE'
@@ -26,4 +25,5 @@ Comment.belongsTo(BlogPost, {
 });
 
 module.exports = { User, BlogPost, Comment };
+
 

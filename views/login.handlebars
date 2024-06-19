@@ -1,7 +1,10 @@
 <h2>Login</h2>
 <form id="login-form">
-  <input type="text" name="username" placeholder="Username">
-  <input type="password" name="password" placeholder="Password">
+  <input type="text" name="username" placeholder="Username" required>
+  <input type="password" name="password" placeholder="Password" required>
+  <p id="login-error-message" style="color: red; display: none;"></p>
   <button type="submit">Login</button>
 </form>
-<a href="/signup">Don't have an account? Sign up here</a>
+<div class="center-link">
+  <a href="/signup">Don't have an account? Sign up here</a>
+</div>

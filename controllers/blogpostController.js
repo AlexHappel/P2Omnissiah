@@ -22,7 +22,7 @@ const updateBlogPost = async (req, res) => {
       },
     });
 
-    if (!updatedPost) {
+    if (!updatedPost[0]) {
       res.status(404).json({ message: 'No post found with this id!' });
       return;
     }
@@ -34,23 +34,24 @@ const updateBlogPost = async (req, res) => {
 };
 
 const deleteBlogPost = async (req, res) => {
-  try {
-    const postData = await BlogPost.destroy({
-      where: {
-        id: req.params.id,
-        user_id: req.session.user_id,
-      },
-    });
-
-    if (!postData) {
-      res.status(404).json({ message: 'No post found with this id!' });
-      return;
+    try {
+      const postData = await BlogPost.destroy({
+        where: {
+          id: req.params.id,
+          user_id: req.session.user_id,
+        },
+      });
+  
+      if (!postData) {
+        res.status(404).json({ message: 'No post found with this id!' });
+        return;
+      }
+  
+      res.status(200).json(postData);
+    } catch (err) {
+      res.status(500).json(err);
     }
+  };
 
-    res.status(200).json(postData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-};
 
 module.exports = { createBlogPost, updateBlogPost, deleteBlogPost };

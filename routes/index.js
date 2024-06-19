@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { getHomePage } = require('../controllers/homeController');
 const { signUp, login, logout } = require('../controllers/userController');
 const { getDashboard } = require('../controllers/dashboardController');
+const { getPost } = require('../controllers/postController');  // Correctly include the post controller
 const userRoutes = require('./api/userRoutes');
 const blogpostRoutes = require('./api/blogpostRoutes');
 const commentRoutes = require('./api/commentRoutes');
@@ -32,6 +33,9 @@ router.get('/signup', (req, res) => {
 
   res.render('signup');
 });
+
+// Post details route
+router.get('/post/:id', getPost);
 
 // Use API routes
 router.use('/api/users', userRoutes);
