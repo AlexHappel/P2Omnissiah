@@ -1,0 +1,20 @@
+{{!-- Use this template to display the homepage --}}
+{{#each blogPosts}}
+  <div class="post">
+    <h2>{{this.title}}</h2>
+    <p>{{this.content}}</p>
+    <p>Posted by {{this.user.username}} on {{format_date this.createdAt}}</p>
+    <a href="/post/{{this.id}}">Read More</a>
+    {{#if this.comments.length}}
+      <div class="comments">
+        <h3>Comments:</h3>
+        {{#each this.comments}}
+          <div class="comment">
+            <p>{{this.comment_text}}</p>
+            <p>Commented by {{this.user.username}} on {{format_date this.createdAt}}</p>
+          </div>
+        {{/each}}
+      </div>
+    {{/if}}
+  </div>
+{{/each}}
