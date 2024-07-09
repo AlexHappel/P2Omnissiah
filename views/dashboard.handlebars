@@ -1,18 +1,24 @@
-<h2>Your Dashboard</h2>
-{{#if blogPosts.length}}
-  {{#each blogPosts}}
-    <div class="post">
+<h2>Dashboard</h2>
+<div class="post">
+  <form id="new-post-form">
+    <input type="text" name="title" placeholder="Title" required>
+    <textarea name="content" placeholder="Content" required></textarea>
+    <button type="submit">Create Post</button>
+  </form>
+</div>
+{{#each blogPosts}}
+  <div class="post">
+    <div class="post-title-box">
       <h2>{{this.title}}</h2>
+    </div>
+    <div class="post-content-box">
       <p>{{this.content}}</p>
+    </div>
+    <p>Posted by {{this.user.username}} on {{format_date this.createdAt}} {{#if this.edited}}<span class="edited-stamp">(edited)</span>{{/if}}</p>
+    <div class="post-footer">
       <button data-id="{{this.id}}" class="edit-btn">Edit</button>
       <button data-id="{{this.id}}" class="delete-btn">Delete</button>
     </div>
-  {{/each}}
-{{else}}
-  <p>No posts yet</p>
-{{/if}}
-<form id="new-post-form">
-  <input type="text" name="title" placeholder="Title">
-  <textarea name="content" placeholder="Content"></textarea>
-  <button type="submit">Add Post</button>
-</form>
+  </div>
+{{/each}}
+

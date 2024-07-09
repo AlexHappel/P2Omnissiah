@@ -37,7 +37,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-app.use('/', require('./routes'));
+app.use('/', require('./routes/indexRoutes'));
 
 // Sync Sequelize models to the database, then turn on the server
 sequelize.sync({ force: false }).then(() => {

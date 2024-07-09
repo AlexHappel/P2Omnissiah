@@ -26,6 +26,10 @@ BlogPost.init(
         key: 'id',
       },
     },
+    edited: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
   },
   {
     sequelize,

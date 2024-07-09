@@ -1,20 +1,18 @@
 <h2>Homepage</h2>
 {{#each blogPosts}}
   <div class="post">
-    <h2>{{this.title}}</h2>
-    <p>{{this.content}}</p>
-    <p>Posted by {{this.user.username}} on {{format_date this.createdAt}}</p>
-    <a href="/post/{{this.id}}" class="read-more-btn">Read More</a>
-    {{#if this.comments.length}}
-      <div class="comments">
-        <h3>Comments:</h3>
-        {{#each this.comments}}
-          <div class="comment">
-            <p>{{this.comment_text}}</p>
-            <p>Commented by {{this.user.username}} on {{format_date this.createdAt}}</p>
-          </div>
-        {{/each}}
-      </div>
-    {{/if}}
+    <div class="post-title-box">
+      <h2>{{this.title}}</h2>
+    </div>
+    <div class="post-content-box">
+      <p>{{this.content}}</p>
+    </div>
+    <p>Posted by {{this.user.username}} on {{format_date this.createdAt}} {{#if this.edited}}<span class="edited-stamp">(edited)</span>{{/if}}</p>
+    <div class="post-footer">
+      <a href="/post/{{this.id}}" class="read-more-btn">Read More</a>
+      <span class="comment-count">
+        <i class="fas fa-comment"></i> {{this.comments.length}}
+      </span>
+    </div>
   </div>
 {{/each}}

@@ -1,17 +1,24 @@
 <div class="post">
-  <h2>{{title}}</h2>
-  <p>{{content}}</p>
-  <p>Posted by {{user.username}} on {{format_date createdAt}}</p>
+  <div class="post-title-box">
+    <h2>{{title}}</h2>
+  </div>
+  <div class="post-content-box">
+    <p>{{content}}</p>
+  </div>
+  <p>Posted by {{user.username}} on {{format_date createdAt}} {{#if edited}}<span class="edited-stamp">(edited)</span>{{/if}}</p>
   {{#if logged_in}}
     <form id="new-comment-form">
       <textarea name="comment_text" placeholder="Add a comment"></textarea>
-      <button type="submit">Add Comment</button>
+      <button type="submit" class="comment-btn">Submit Comment</button>
     </form>
   {{/if}}
-  {{#each comments}}
-    <div class="comment">
-      <p>{{this.comment_text}}</p>
-      <p>Commented by {{this.user.username}} on {{format_date this.createdAt}}</p>
-    </div>
-  {{/each}}
+  <div class="comments">
+    <h3>Comments:</h3>
+    {{#each comments}}
+      <div class="comment">
+        <p>{{this.comment_text}}</p>
+        <p>Commented by {{this.user.username}} on {{format_date this.createdAt}}</p>
+      </div>
+    {{/each}}
+  </div>
 </div>

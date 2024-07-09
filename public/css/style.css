@@ -43,15 +43,27 @@ nav a:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.post h2, .comment h3 {
-  margin-top: 0;
-}
-
-.post p, .comment p {
+.post-title-box, .post-content-box {
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  padding: 1rem;
   margin-bottom: 1rem;
 }
 
-button, .read-more-btn {
+.post-title-box h2 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.post-content-box p {
+  margin: 0;
+  font-size: 1.1em;
+  color: #555;
+  line-height: 1.6;
+}
+
+button, .read-more-btn, .comment-btn {
   border: none;
   border-radius: 5px;
   color: #fff;
@@ -63,7 +75,7 @@ button, .read-more-btn {
   text-align: center;
 }
 
-button:hover, .read-more-btn:hover {
+button:hover, .read-more-btn:hover, .comment-btn:hover {
   opacity: 0.8;
 }
 
@@ -77,6 +89,12 @@ button:hover, .read-more-btn:hover {
 
 .read-more-btn {
   background-color: #28a745; /* Beautiful green */
+}
+
+.comment-btn {
+  background-color: #007bff; /* Regret blue */
+  display: block;
+  margin-top: 1rem;
 }
 
 form {
@@ -101,6 +119,7 @@ form textarea {
   margin-bottom: 1rem;
   padding: 0.5rem;
   width: 100%;
+  resize: none; /* Disable resizing */
 }
 
 form button {
@@ -127,4 +146,25 @@ h2 {
 
 .comment {
   margin-bottom: 1rem;
+}
+
+.post-footer {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.comment-count {
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.comment-count i {
+  margin-right: 0.5rem;
+}
+
+.edited-stamp {
+  font-style: italic;
+  color: #999;
 }
