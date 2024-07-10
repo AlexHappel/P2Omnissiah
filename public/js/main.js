@@ -128,6 +128,7 @@ const editPostHandler = async (event) => {
 
 document.querySelectorAll('.edit-btn').forEach(button => {
   button.addEventListener('click', editPostHandler);
+});
 
 // Edit post form handler
 const editPostFormHandler = async (event) => {
@@ -153,29 +154,3 @@ const editPostFormHandler = async (event) => {
 };
 
 document.querySelector('#edit-post-form')?.addEventListener('submit', editPostFormHandler);
-});
-
-// New comment form handler
-const newCommentHandler = async (event) => {
-  event.preventDefault();
-
-  const comment_text = document.querySelector('textarea[name="comment_text"]').value.trim();
-  const blogpost_id = window.location.toString().split('/').pop();
-
-  if (comment_text) {
-    const response = await fetch(`/api/comments`, {
-      method: 'POST',
-      body: JSON.stringify({ comment_text, blogpost_id }),
-      headers: { 'Content-Type': 'application/json' },
-    });
-
-    if (response.ok) {
-      document.location.reload();
-    } else {
-      alert('Failed to add comment.');
-    }
-  }
-};
-
-document.querySelector('#new-comment-form')?.addEventListener('submit', newCommentHandler);
- 

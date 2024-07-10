@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const { getHomePage } = require('../controllers/homeController');
 const { getDashboard } = require('../controllers/dashboardController');
-const { getPost } = require('../controllers/blogPostController');
+const { getPost } = require('../controllers/blogPostController');  // Correctly include the post controller
 const userRoutes = require('./api/userRoutes');
-const blogpostRoutes = require('./api/blogPostRoutes');
+const blogPostRoutes = require('./api/blogPostRoutes');
 const commentRoutes = require('./api/commentRoutes');
 const withAuth = require('../utils/auth');
 
@@ -37,29 +37,11 @@ router.get('/signup', (req, res) => {
 router.get('/post/:id', getPost);
 
 // Edit post route
-router.get('/edit/:id', withAuth, async (req, res) => {
-  try {
-    const postData = await BlogPost.findByPk(req.params.id);
-
-    if (!postData) {
-      res.status(404).json({ message: 'No post found with this id!' });
-      return;
-    }
-
-    const post = postData.get({ plain: true });
-
-    res.render('editPost', {
-      ...post,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+router.get('/edit/:id', withAuth, getPost);  // Add this line
 
 // Use API routes
 router.use('/api/users', userRoutes);
-router.use('/api/blogposts', blogpostRoutes);
+router.use('/api/blogposts', blogPostRoutes);
 router.use('/api/comments', commentRoutes);
 
 module.exports = router;

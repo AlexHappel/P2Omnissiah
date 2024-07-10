@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const { signUp, login, logout } = require('../../controllers/userController');
+const { createBlogPost, updateBlogPost, deleteBlogPost, getPost } = require('../../controllers/blogPostController');
+const withAuth = require('../../utils/auth');
 
-// User routes
-router.post('/signup', signUp);
-router.post('/login', login);
-router.post('/logout', logout);
+router.post('/', withAuth, createBlogPost);
+router.put('/:id', withAuth, updateBlogPost);
+router.delete('/:id', withAuth, deleteBlogPost);
+router.get('/edit/:id', withAuth, getPost);  // Ensure this line exists and is correct
 
-module.exports = router; 
- 
+module.exports = router;

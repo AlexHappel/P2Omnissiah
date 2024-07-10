@@ -56,12 +56,14 @@ const deleteBlogPost = async (req, res) => {
 
     res.status(200).json(postData);
   } catch (err) {
+    console.error('Error deleting post:', err);  // Log the error
     res.status(500).json(err);
   }
 };
 
 const getPost = async (req, res) => {
   try {
+    console.log(`Fetching post with id ${req.params.id}`);
     const postData = await BlogPost.findByPk(req.params.id, {
       include: [
         {
@@ -79,17 +81,20 @@ const getPost = async (req, res) => {
     });
 
     if (!postData) {
+      console.log('No post found with this id');
       res.status(404).json({ message: 'No post found with this id!' });
       return;
     }
 
     const post = postData.get({ plain: true });
+    console.log('Post data:', post);
 
-    res.render('post', {
+    res.render('editPost', {
       ...post,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
+    console.error('Error fetching post for edit:', err);  // Log the error
     res.status(500).json(err);
   }
 };
