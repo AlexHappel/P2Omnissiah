@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { getHomePage } = require('../controllers/homeController');
 const { getDashboard } = require('../controllers/dashboardController');
-const { getPost } = require('../controllers/blogPostController');  // Correctly include the post controller
+const { getPost, createBlogPost, updateBlogPost, deleteBlogPost } = require('../controllers/blogPostController');
 const userRoutes = require('./api/userRoutes');
 const blogPostRoutes = require('./api/blogPostRoutes');
 const commentRoutes = require('./api/commentRoutes');
