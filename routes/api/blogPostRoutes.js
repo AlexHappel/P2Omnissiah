@@ -5,6 +5,6 @@ const withAuth = require('../../utils/auth');
 router.post('/', withAuth, createBlogPost);
 router.put('/:id', withAuth, updateBlogPost);
 router.delete('/:id', withAuth, deleteBlogPost);
-router.get('/edit/:id', withAuth, getPost);  // Ensure this line exists and is correct
+router.get('/edit/:id', withAuth, getPost);  
 
 module.exports = router;

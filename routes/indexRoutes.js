@@ -37,7 +37,7 @@ router.get('/signup', (req, res) => {
 router.get('/post/:id', getPost);
 
 // Edit post route
-router.get('/edit/:id', withAuth, getPost);  // Add this line
+router.get('/edit/:id', withAuth, getPost);
 
 // Use API routes
 router.use('/api/users', userRoutes);
